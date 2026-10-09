@@ -1,4 +1,4 @@
-module github.com/LumenResearch/uasurfer
+module github.com/BrightMountainMedia/uasurfer
 
 go 1.25.12
 
