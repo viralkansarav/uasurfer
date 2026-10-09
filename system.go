@@ -155,14 +155,37 @@ func (u *UserAgent) parseOS(ua string, hints *Hints) bool {
 	case strings.Contains(ua, "cfnetwork") && strings.Contains(ua, "darwin"):
 		u.parseAppleNative(ua, hints)
 
+	// SDKs that name the OS rather than the box, Google's IMA among them:
+	// "IMAtvOS/t.3.8.0 tvOS/13.4". After CFNetwork, where the
+	// BrightMountainMediaInc fork had it, so the iOS apps that make up most
+	// of the traffic reaching this far are not scanned for it.
+	case strings.Contains(ua, "tvos"):
+		u.OS.Platform = PlatformAppleTV
+		u.OS.Name = OSTvOS
+		u.parseTvOSVersion(ua)
+
 	// Roku, after CFNetwork: the players state their OS version after the
 	// model ("Roku/DVP-12.5", "Roku4640X/DVP-7.70") and never carry Darwin,
 	// while "Roku" on its own is also the remote control app, which runs on
 	// a phone and is caught above.
 	case strings.Contains(ua, "roku"):
-		u.OS.Platform = PlatformLinux
+		u.OS.Platform = PlatformRokuTV
 		u.OS.Name = OSRoku
 		u.OS.Version.parseAfter(ua, "/dvp-", "roku/")
+
+	// Tizen agents that state no Linux, which parseLinux would otherwise
+	// catch: Opera Mini on a Tizen phone, "Opera/9.80 (Tizen; Opera Mini/7.7)".
+	case strings.Contains(ua, "tizen"):
+		u.OS.Platform = PlatformLinux
+		u.OS.Name = OSTizen
+		u.OS.Version.parseAfter(ua, "tizen ", "tizen/")
+
+	// FFmpeg's libavformat, "Lavf/58.22.100", fetching media for the Android
+	// players built on it. Last, because desktop tools carry it too and
+	// anything that states a platform has been read by now.
+	case strings.Contains(ua, "lavf"):
+		u.OS.Platform = PlatformLinux
+		u.OS.Name = OSAndroid
 
 	default:
 		u.OS.Platform = PlatformUnknown
@@ -237,9 +260,12 @@ func (u *UserAgent) parseiOS(specs, agentPlatform string) {
 		u.OS.Platform = PlatformiPhone
 		u.OS.Name = OSiOS
 
+	// An iPad reports OSiOS, as the BrightMountainMediaInc fork did: ad
+	// requests and campaign targeting treat iPadOS as iOS. PlatformiPad is
+	// what tells it apart. See doc/compat.md.
 	case strings.HasPrefix(specs, "ipad"):
 		u.OS.Platform = PlatformiPad
-		u.OS.Name = OSiPadOS
+		u.OS.Name = OSiOS
 
 	default: // ipod, "ipod touch" included
 		u.OS.Platform = PlatformiPod
@@ -254,7 +280,7 @@ func (u *UserAgent) parseiOS(specs, agentPlatform string) {
 func (u *UserAgent) parseiOSNative(agentPlatform string) {
 	if strings.Contains(agentPlatform, "ipad") {
 		u.OS.Platform = PlatformiPad
-		u.OS.Name = OSiPadOS
+		u.OS.Name = OSiOS
 	} else {
 		u.OS.Platform = PlatformiPhone
 		u.OS.Name = OSiOS
@@ -280,7 +306,7 @@ func (u *UserAgent) parseTvOSVersion(ua string) {
 			return
 		}
 	}
-	u.OS.Version.parseAfter(ua, "cpu os ", "os x ")
+	u.OS.Version.parseAfter(ua, "cpu os ", "os x ", "tvos/")
 }
 
 func (u *UserAgent) parseWindowsPhone(agentPlatform string) {
@@ -330,7 +356,7 @@ func (u *UserAgent) parseMacintosh(ua string, hints *Hints) {
 		u.OS.Version.parse(after)
 
 		if hints != nil && hints.ScreenSize != nil && hints.ScreenSize.isiPad() {
-			u.OS.Name = OSiPadOS
+			u.OS.Name = OSiOS
 			u.OS.Platform = PlatformiPad
 		}
 

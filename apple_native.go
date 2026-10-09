@@ -32,7 +32,7 @@ func (u *UserAgent) parseAppleNative(ua string, hints *Hints) {
 
 	if hints != nil && hints.ScreenSize != nil && hints.ScreenSize.isiPad() {
 		u.OS.Platform = PlatformiPad
-		u.OS.Name = OSiPadOS
+		u.OS.Name = OSiOS
 		return
 	}
 

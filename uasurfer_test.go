@@ -42,11 +42,11 @@ var testUAVars = []struct {
 	// iPad
 	{"Mozilla/5.0(iPad; U; CPU iPhone OS 3_2 like Mac OS X; en-us) AppleWebKit/531.21.10 (KHTML, like Gecko) Version/4.0.4 Mobile/7B314 Safari/531.21.10",
 		UserAgent{
-			Browser{BrowserSafari, Version{4, 0, 4}}, OS{PlatformiPad, OSiPadOS, Version{3, 2, 0}}, DeviceTablet}},
+			Browser{BrowserSafari, Version{4, 0, 4}}, OS{PlatformiPad, OSiOS, Version{3, 2, 0}}, DeviceTablet}},
 
 	{"Mozilla/5.0 (iPad; CPU OS 9_0 like Mac OS X) AppleWebKit/601.1.17 (KHTML, like Gecko) Version/8.0 Mobile/13A175 Safari/600.1.4",
 		UserAgent{
-			Browser{BrowserSafari, Version{8, 0, 0}}, OS{PlatformiPad, OSiPadOS, Version{9, 0, 0}}, DeviceTablet}},
+			Browser{BrowserSafari, Version{8, 0, 0}}, OS{PlatformiPad, OSiOS, Version{9, 0, 0}}, DeviceTablet}},
 
 	{"Mozilla/5.0 (iPhone; CPU iPhone OS 10_0 like Mac OS X) AppleWebKit/602.1.32 (KHTML, like Gecko) Version/10.0 Mobile/14A5261v Safari/602.1",
 		UserAgent{
@@ -161,7 +161,7 @@ var testUAVars = []struct {
 
 	{"Mozilla/5.0 (iPad; CPU OS 12_3_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/12.0 EdgiOS/44.3.2 Mobile/15E148 Safari/605.1.15",
 		UserAgent{
-			Browser{BrowserIE, Version{12, 0, 0}}, OS{PlatformiPad, OSiPadOS, Version{12, 3, 1}}, DeviceTablet}},
+			Browser{BrowserIE, Version{12, 0, 0}}, OS{PlatformiPad, OSiOS, Version{12, 3, 1}}, DeviceTablet}},
 
 	{"Mozilla/5.0 (Linux; Android 9; motorola one) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/73.0.3683.90 Mobile Safari/537.36 EdgA/42.0.2.3728",
 		UserAgent{
@@ -233,11 +233,11 @@ var testUAVars = []struct {
 	// iPod, iPod Touch
 	{"mozilla/5.0 (ipod touch; cpu iphone os 9_3_3 like mac os x) applewebkit/601.1.46 (khtml, like gecko) version/9.0 mobile/13g34 safari/601.1",
 		UserAgent{
-			Browser{BrowserSafari, Version{9, 0, 0}}, OS{PlatformiPod, OSiOS, Version{9, 3, 3}}, DevicePhone}},
+			Browser{BrowserSafari, Version{9, 0, 0}}, OS{PlatformiPod, OSiOS, Version{9, 3, 3}}, DeviceTablet}},
 
 	{"mozilla/5.0 (ipod; cpu iphone os 6_1_6 like mac os x) applewebkit/536.26 (khtml, like gecko) version/6.0 mobile/10b500 safari/8536.25",
 		UserAgent{
-			Browser{BrowserSafari, Version{6, 0, 0}}, OS{PlatformiPod, OSiOS, Version{6, 1, 6}}, DevicePhone}},
+			Browser{BrowserSafari, Version{6, 0, 0}}, OS{PlatformiPod, OSiOS, Version{6, 1, 6}}, DeviceTablet}},
 
 	// WebOS
 	{"Mozilla/5.0 (hp-tablet; Linux; hpwOS/3.0.0; U; de-DE) AppleWebKit/534.6 (KHTML, like Gecko) wOSBrowser/233.70 Safari/534.6 TouchPad/1.0",
@@ -364,7 +364,7 @@ var testUAVars = []struct {
 
 	{"Roku/DVP-5.2 (025.02E03197A)", // Roku
 		UserAgent{
-			Browser{BrowserUnknown, Version{0, 0, 0}}, OS{PlatformLinux, OSRoku, Version{5, 2, 0}}, DeviceTV}},
+			Browser{BrowserUnknown, Version{0, 0, 0}}, OS{PlatformRokuTV, OSRoku, Version{5, 2, 0}}, DeviceTV}},
 
 	{"mozilla/5.0 (smart-tv; linux; tizen 2.3) applewebkit/538.1 (khtml, like gecko) samsungbrowser/1.0 tv safari/538.1", // Samsung SmartTV
 		UserAgent{
@@ -377,7 +377,7 @@ var testUAVars = []struct {
 	// Google search app (GSA) for iOS -- it's Safari in disguise as of v6
 	{"Mozilla/5.0 (iPad; CPU OS 8_3 like Mac OS X) AppleWebKit/600.1.4 (KHTML, like Gecko) GSA/6.0.51363 Mobile/12F69 Safari/600.1.4",
 		UserAgent{
-			Browser{BrowserSafari, Version{8, 3, 0}}, OS{PlatformiPad, OSiPadOS, Version{8, 3, 0}}, DeviceTablet}},
+			Browser{BrowserSafari, Version{8, 3, 0}}, OS{PlatformiPad, OSiOS, Version{8, 3, 0}}, DeviceTablet}},
 
 	// Spotify (applicable for advertising applications)
 	{"Mozilla/5.0 (Windows NT 5.1) AppleWebKit/537.36 (KHTML, like Gecko) Spotify/1.0.9.133 Safari/537.36",
@@ -530,7 +530,7 @@ var testUAVars = []struct {
 			Browser{BrowserSafari, Version{17, 5, 0}}, OS{PlatformiPhone, OSiOS, Version{17, 5, 1}}, DevicePhone}},
 	{"Mozilla/5.0 (iPad; CPU OS 17_5 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.5 Mobile/15E148 Safari/604.1",
 		UserAgent{
-			Browser{BrowserSafari, Version{17, 5, 0}}, OS{PlatformiPad, OSiPadOS, Version{17, 5, 0}}, DeviceTablet}},
+			Browser{BrowserSafari, Version{17, 5, 0}}, OS{PlatformiPad, OSiOS, Version{17, 5, 0}}, DeviceTablet}},
 	{"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36 Edg/126.0.0.0",
 		UserAgent{
 			Browser{BrowserIE, Version{126, 0, 0}}, OS{PlatformWindows, OSWindows, Version{10, 0, 0}}, DeviceComputer}},
@@ -569,7 +569,7 @@ var testUAVars = []struct {
 			Browser{BrowserUnknown, Version{0, 0, 0}}, OS{PlatformiPhone, OSiOS, Version{26, 5, 1}}, DevicePhone}},
 	{"TuneIn Radio/27.1.0 (iPadOS/16.6)",
 		UserAgent{
-			Browser{BrowserUnknown, Version{0, 0, 0}}, OS{PlatformiPad, OSiPadOS, Version{16, 6, 0}}, DeviceTablet}},
+			Browser{BrowserUnknown, Version{0, 0, 0}}, OS{PlatformiPad, OSiOS, Version{16, 6, 0}}, DeviceTablet}},
 	{"Mozilla/5.0 (Freebox; fbx6hd 1.3.57.2) VODLauncher/1.0 Qt/5.15.19",
 		UserAgent{
 			Browser{BrowserUnknown, Version{0, 0, 0}}, OS{PlatformUnknown, OSUnknown, Version{0, 0, 0}}, DeviceTV}},
@@ -596,7 +596,7 @@ var testUAVars = []struct {
 			Browser{BrowserUnknown, Version{0, 0, 0}}, OS{PlatformUnknown, OSUnknown, Version{0, 0, 0}}, DeviceTV}},
 	{"Mozilla/5.0 (iPod touch; CPU iPhone OS 15_8_8 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/19H384",
 		UserAgent{
-			Browser{BrowserSafari, Version{15, 8, 8}}, OS{PlatformiPod, OSiOS, Version{15, 8, 8}}, DevicePhone}},
+			Browser{BrowserSafari, Version{15, 8, 8}}, OS{PlatformiPod, OSiOS, Version{15, 8, 8}}, DeviceTablet}},
 
 	// Unknown or partially handled
 	{"Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10.4; en-US; rv:1.9.1b3pre) Gecko/20090223 SeaMonkey/2.0a3", //Seamonkey (~FF)
@@ -835,7 +835,7 @@ var testUAVars = []struct {
 
 	{"Mozilla/5.0(iPad; U; CPU iPhone OS 3_2 like Mac OS X; en-us) AppleWebKit/531.21.10 (KHTML, like Gecko) Version/4.0.4 Mobile/7B314 Safari/531.21.10",
 		UserAgent{
-			Browser{BrowserSafari, Version{4, 0, 4}}, OS{PlatformiPad, OSiPadOS, Version{3, 2, 0}}, DeviceTablet}},
+			Browser{BrowserSafari, Version{4, 0, 4}}, OS{PlatformiPad, OSiOS, Version{3, 2, 0}}, DeviceTablet}},
 
 	{"Mozilla/5.0 (iPhone; U; CPU iPhone OS 4_0 like Mac OS X; en-us) AppleWebKit/532.9 (KHTML, like Gecko) Version/4.0.5 Mobile/8A293 Safari/6531.22.7",
 		UserAgent{
@@ -847,11 +847,11 @@ var testUAVars = []struct {
 
 	{"Mozilla/5.0 (iPad; CPU OS 5_0 like Mac OS X) AppleWebKit/534.46 (KHTML, like Gecko) Version/5.1 Mobile/9A334 Safari/7534.48.3",
 		UserAgent{
-			Browser{BrowserSafari, Version{5, 1, 0}}, OS{PlatformiPad, OSiPadOS, Version{5, 0, 0}}, DeviceTablet}},
+			Browser{BrowserSafari, Version{5, 1, 0}}, OS{PlatformiPad, OSiOS, Version{5, 0, 0}}, DeviceTablet}},
 
 	{"Mozilla/5.0 (iPad; CPU OS 6_0 like Mac OS X) AppleWebKit/536.26 (KHTML, like Gecko) Version/6.0 Mobile/10A5355d Safari/8536.25",
 		UserAgent{
-			Browser{BrowserSafari, Version{6, 0, 0}}, OS{PlatformiPad, OSiPadOS, Version{6, 0, 0}}, DeviceTablet}},
+			Browser{BrowserSafari, Version{6, 0, 0}}, OS{PlatformiPad, OSiOS, Version{6, 0, 0}}, DeviceTablet}},
 
 	{"Mozilla/5.0 (iPhone; CPU iPhone OS 7_0 like Mac OS X) AppleWebKit/546.10 (KHTML, like Gecko) Version/6.0 Mobile/7E18WD Safari/8536.25",
 		UserAgent{
@@ -859,11 +859,11 @@ var testUAVars = []struct {
 
 	{"Mozilla/5.0 (iPad; CPU OS 7_0 like Mac OS X) AppleWebKit/537.51.1 (KHTML, like Gecko) Version/7.0 Mobile/11A465 Safari/9537.53",
 		UserAgent{
-			Browser{BrowserSafari, Version{7, 0, 0}}, OS{PlatformiPad, OSiPadOS, Version{7, 0, 0}}, DeviceTablet}},
+			Browser{BrowserSafari, Version{7, 0, 0}}, OS{PlatformiPad, OSiOS, Version{7, 0, 0}}, DeviceTablet}},
 
 	{"Mozilla/5.0 (iPad; CPU OS 7_0_2 like Mac OS X) AppleWebKit/537.51.1 (KHTML, like Gecko) Version/7.0 Mobile/11A501 Safari/9537.53",
 		UserAgent{
-			Browser{BrowserSafari, Version{7, 0, 0}}, OS{PlatformiPad, OSiPadOS, Version{7, 0, 2}}, DeviceTablet}},
+			Browser{BrowserSafari, Version{7, 0, 0}}, OS{PlatformiPad, OSiOS, Version{7, 0, 2}}, DeviceTablet}},
 
 	{"Mozilla/5.0 (iPhone; CPU iPhone OS 10_2_1 like Mac OS X) AppleWebKit/602.4.6 (KHTML, like Gecko) Mobile/14D27 [FBAN/FBIOS;FBAV/86.0.0.48.52;FBBV/53842252;FBDV/iPhone9,1;FBMD/iPhone;FBSN/iOS;FBSV/10.2.1;FBSS/2;FBCR/Verizon;FBID/phone;FBLC/en_US;FBOP/5;FBRV/0]",
 		UserAgent{
@@ -1268,11 +1268,11 @@ var testUAVarsWithHints = []struct {
 	{"Mozilla/5.0 (Macintosh; Intel Mac OS X 11_1_0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.36", // macOS Big Sur
 		Hints{ScreenSize: &ScreenSize{Width: 1024, Height: 768}},
 		UserAgent{
-			Browser{BrowserChrome, Version{87, 0, 4280}}, OS{PlatformiPad, OSiPadOS, Version{11, 1, 0}}, DeviceTablet}},
+			Browser{BrowserChrome, Version{87, 0, 4280}}, OS{PlatformiPad, OSiOS, Version{11, 1, 0}}, DeviceTablet}},
 	{"Mozilla/5.0 (Macintosh; Intel Mac OS X 11_1_0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.36",
 		Hints{ScreenSize: &ScreenSize{Width: 768, Height: 1024}},
 		UserAgent{
-			Browser{BrowserChrome, Version{87, 0, 4280}}, OS{PlatformiPad, OSiPadOS, Version{11, 1, 0}}, DeviceTablet}},
+			Browser{BrowserChrome, Version{87, 0, 4280}}, OS{PlatformiPad, OSiOS, Version{11, 1, 0}}, DeviceTablet}},
 	{"Mozilla/5.0 (Macintosh; Intel Mac OS X 11_1_0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.36",
 		Hints{},
 		UserAgent{
@@ -1280,22 +1280,22 @@ var testUAVarsWithHints = []struct {
 	{"Mozilla/5.0 (Macintosh; Intel Mac OS X 11_1_0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.36",
 		Hints{ScreenSize: &ScreenSize{Width: 1024, Height: 1366}},
 		UserAgent{
-			Browser{BrowserChrome, Version{87, 0, 4280}}, OS{PlatformiPad, OSiPadOS, Version{11, 1, 0}}, DeviceTablet}},
+			Browser{BrowserChrome, Version{87, 0, 4280}}, OS{PlatformiPad, OSiOS, Version{11, 1, 0}}, DeviceTablet}},
 	{"TileExplorer/181 CFNetwork/3860.600.12 Darwin/25.5.0",
 		Hints{ScreenSize: &ScreenSize{Width: 1024, Height: 768}},
 		UserAgent{
-			Browser{BrowserUnknown, Version{0, 0, 0}}, OS{PlatformiPad, OSiPadOS, Version{26, 5, 0}}, DeviceTablet}},
+			Browser{BrowserUnknown, Version{0, 0, 0}}, OS{PlatformiPad, OSiOS, Version{26, 5, 0}}, DeviceTablet}},
 	{"TileExplorer/181 CFNetwork/3860.600.12 Darwin/25.5.0",
 		Hints{ScreenSize: &ScreenSize{Width: 768, Height: 1024}},
 		UserAgent{
-			Browser{BrowserUnknown, Version{0, 0, 0}}, OS{PlatformiPad, OSiPadOS, Version{26, 5, 0}}, DeviceTablet}},
+			Browser{BrowserUnknown, Version{0, 0, 0}}, OS{PlatformiPad, OSiOS, Version{26, 5, 0}}, DeviceTablet}},
 	{"TileExplorer/181 CFNetwork/3860.600.12 Darwin/25.5.0",
 		Hints{ScreenSize: &ScreenSize{Width: 390, Height: 844}},
 		UserAgent{
 			Browser{BrowserUnknown, Version{0, 0, 0}}, OS{PlatformiPhone, OSiOS, Version{26, 5, 0}}, DevicePhone}},
 }
 
-//go:embed testdata/bots.tsv testdata/devices.tsv testdata/tv.tsv
+//go:embed testdata/bots.tsv testdata/devices.tsv testdata/tv.tsv testdata/compat.tsv
 var fixtures embed.FS
 
 // readFixtures returns the rows of a testdata file, "#" comments and blank

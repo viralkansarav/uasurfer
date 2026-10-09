@@ -5,7 +5,8 @@ import (
 )
 
 // Markers that are a substring of another marker are omitted: "tv" already
-// subsumes googletv/appletv/smarttv/smart-tv/hbbtv/dtv/"tv box", and " x96" the
+// subsumes googletv/appletv/smarttv/smart-tv/hbbtv/dtv/"tv box", "telly"
+// subsumes "stableavb_telly", "bravia" "bravia 4k", and " x96" the
 // whole X96 box family - with its leading space, because "540x960" is a screen
 // resolution and X96 boxes state their model as a field of its own. Amazon's Fire TV models are not listed at all; isFireTV
 // matches the whole family.
@@ -15,7 +16,7 @@ var tvMarkers = []string{
 	// operator set-top boxes. The French ISP boxes are worth naming: every
 	// reference parser reads them as a desktop or a phone.
 	"freebox", "sfrwpebrowser", "mfi_airplay",
-	"tpm191e", "tpm171e", "nokia streaming box", "stableavb_telly", "lxbox51",
+	"tpm191e", "tpm171e", "nokia streaming box", "lxbox51",
 	" x96", "canal plus box", "vectra 4k box",
 	"diw377", "diw380", "dv8555", "dctiw362", "gd1 4k", "ai pont", "b-stream",
 	// Android boxes, sticks and projectors whose model names no television: MEO's
@@ -25,6 +26,13 @@ var tvMarkers = []string{
 	// and costs the scan far less: ";" turns up a few times in an agent, a space
 	// at every word.
 	"; meobox", "; h313", "; hy300", "; m98-y10",
+	// Carried over from the BrightMountainMediaInc fork, whose televisions they
+	// are: Comcast's Firebolt and Sky's WPE boxes, Samsung's own HTTP agent,
+	// Telly's free TV, the Gemini and Bell streamers, a Philips TV, the
+	// STI6110, C02_2K and Mi projector boxes, the AR2101 build some Android
+	// TVs ship, and "aeoh", the Echo Show 15 with Fire TV built in.
+	"firebolt", "sky_ott", "samsung-agent", "telly", "gemini", "bell streamer",
+	"philips 4k", "sti6110", "c02_2k", "miproj", "stick hd", "ar2101", "aeoh",
 	// The media framework of Hisense VIDAA, LG and Samsung players, fetching on
 	// their behalf. Desktop Linux ships it too, but a desktop's ads fire from
 	// a browser, not from its media framework.
@@ -200,12 +208,14 @@ func (u *UserAgent) parseDevice(ua string) {
 	case u.OS.Platform != PlatformiPhone && u.OS.Platform != PlatformiPad && isTV(ua):
 		u.DeviceType = DeviceTV
 
-	case u.OS.Platform == PlatformiPad || strings.Contains(ua, "tablet") || strings.Contains(ua, "kindle/") || strings.Contains(ua, "playbook"):
+	// The iPod touch reports as a tablet, as it did in the BrightMountainMediaInc
+	// fork and in uasurfer before it. Upstream now files it with the phones;
+	// this fork keeps the old answer so callers see no change. See
+	// doc/compat.md.
+	case u.OS.Platform == PlatformiPad || u.OS.Platform == PlatformiPod || strings.Contains(ua, "tablet") || strings.Contains(ua, "kindle/") || strings.Contains(ua, "playbook"):
 		u.DeviceType = DeviceTablet
 
-	// The iPod touch sits with the phones: a four inch player carried in a
-	// pocket has more in common with one than with a tablet.
-	case u.OS.Platform == PlatformiPhone || u.OS.Platform == PlatformiPod || u.OS.Platform == PlatformBlackberry || strings.Contains(ua, "phone"):
+	case u.OS.Platform == PlatformiPhone || u.OS.Platform == PlatformBlackberry || strings.Contains(ua, "phone"):
 		u.DeviceType = DevicePhone
 
 	case u.OS.Name == OSAndroid:
@@ -269,6 +279,15 @@ func (u *UserAgent) parseDevice(ua string) {
 	// phone matching on Silk alone.
 	case (u.Browser.Name == BrowserSilk || u.OS.Name == OSKindle) && !strings.Contains(ua, "sd4930ur"):
 		u.DeviceType = DeviceTablet
+
+	// Opera's Presto engine outside a desktop is Opera Mini and Opera Mobile on
+	// feature phones, which state nothing else about the device. Carried over
+	// from the BrightMountainMediaInc fork, and placed after the Android case,
+	// which settles Opera Mobile on Android itself, so Android agents are not
+	// scanned for it. Desktop Linux is excluded: Opera 12 ran Presto there too,
+	// and that falls through to the computer case below.
+	case strings.Contains(ua, "presto") && u.OS.Name != OSLinux:
+		u.DeviceType = DevicePhone
 
 	case strings.Contains(ua, "mobile") || strings.Contains(ua, "touch") || strings.Contains(ua, " mobi") || strings.Contains(ua, "webos"): //anything "mobile"/"touch" that didn't get captured as tablet, console or wearable is presumed a phone
 		u.DeviceType = DevicePhone

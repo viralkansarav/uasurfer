@@ -1,10 +1,8 @@
 module github.com/BrightMountainMedia/uasurfer
 
-go 1.25.12
+// The minimum is what the code needs, not what it is developed on: a go line
+// here is a floor for every module that imports this one, and bs-bidder builds
+// on Go 1.24. The toolchain line only applies inside this repository.
+go 1.24.0
 
-tool golang.org/x/perf/cmd/benchstat
-
-require (
-	github.com/aclements/go-moremath v0.0.0-20210112150236-f10218a38794 // indirect
-	golang.org/x/perf v0.0.0-20260813145340-fd4a688df892 // indirect
-)
+toolchain go1.25.12

@@ -145,6 +145,9 @@ DeviceType is typically quite accurate, though determining between phones and ta
 Apple, Google, Roku and Amazon, most of which also report an OS of their own:
 see [doc/tv.md](doc/tv.md).
 
+This fork keeps the names and answers bs-bidder was built on, from the
+BrightMountainMediaInc fork: see [doc/compat.md](doc/compat.md).
+
 ## Example Combinations of Attributes
 * Surface RT -> `OSWindows8`, `DeviceTablet`, OSVersion >= `6`
 * Android Tablet -> `OSAndroid`, `DeviceTablet`

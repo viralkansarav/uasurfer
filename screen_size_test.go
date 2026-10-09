@@ -41,8 +41,8 @@ func TestParseWithNilHints(t *testing.T) {
 	}
 
 	// a supplied iPad panel still promotes the agent
-	if got := ParseWithHints(mac, &Hints{ScreenSize: &ScreenSize{1024, 768}}); got.OS.Name != OSiPadOS {
-		t.Errorf("ParseWithHints(mac, iPad size).OS.Name = %v, want %v", got.OS.Name, OSiPadOS)
+	if got := ParseWithHints(mac, &Hints{ScreenSize: &ScreenSize{1024, 768}}); got.OS.Name != OSiOS || got.OS.Platform != PlatformiPad {
+		t.Errorf("ParseWithHints(mac, iPad size).OS = %v on %v, want %v on %v", got.OS.Name, got.OS.Platform, OSiOS, PlatformiPad)
 	}
 }
 

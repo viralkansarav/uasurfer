@@ -25,6 +25,16 @@ The bot constants must stay a contiguous block at the **end** of the
 so a non-bot appended after them silently becomes a bot.
 `TestBrowserNameStrings` pins the last one by name and fails if that happens.
 
+## Fork compatibility
+
+This is the BrightMountainMedia fork. bs-bidder depends on what the
+BrightMountainMediaInc fork reported, and [doc/compat.md](doc/compat.md) lists
+what is deliberately kept from it: the `tvOS` and `RokuOS` names, iPads as
+`OSiOS`, the iPod touch as a tablet, `PlatformRokuTV`, its markers and rules,
+and a go line of 1.24.0. These are not bugs to fix toward upstream.
+`TestCompatFixtures` holds them; when an upstream merge fails it, keep the fork's
+answer unless the row is wrong about what the agent means.
+
 ## Naming
 
 Three names for three concepts, used everywhere:

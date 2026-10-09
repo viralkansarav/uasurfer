@@ -60,8 +60,12 @@ benchguard: $(GOBIN)/benchstat
 	@cd $(WORK) && $(GOBIN)/benchstat -format csv base.out head.out 2>/dev/null \
 		| awk -v thresh=$(THRESH) -v minns=$(MINNS) -f $(CURDIR)/scripts/benchguard.awk
 
+# Pinned here rather than as a tool in go.mod: a requirement in go.mod reaches
+# every module that imports this one, and x/perf needs a newer Go than they do.
+BENCHSTAT_VERSION := v0.0.0-20260813145340-fd4a688df892
+
 $(GOBIN)/benchstat:
-	go install golang.org/x/perf/cmd/benchstat # the version pinned in go.mod
+	go install golang.org/x/perf/cmd/benchstat@$(BENCHSTAT_VERSION)
 
 $(GOBIN)/goimports:
 	go install golang.org/x/tools/cmd/goimports@latest

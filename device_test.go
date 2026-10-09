@@ -30,7 +30,7 @@ func TestIsTVMarkers(t *testing.T) {
 
 	// Markers dropped from tvMarkers as redundant must still match via the
 	// shorter marker that subsumes them.
-	for _, m := range []string{"googletv", "dtv", "appletv", "smarttv", "smart-tv", "hbbtv", "tv box", "aftsss", "aftkauk"} {
+	for _, m := range []string{"googletv", "dtv", "appletv", "smarttv", "smart-tv", "hbbtv", "tv box", "aftsss", "aftkauk", "stableavb_telly", "bravia 4k"} {
 		if !isTV(m) {
 			t.Errorf("isTV(%q) = false, want true", m)
 		}

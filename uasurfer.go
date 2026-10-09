@@ -259,7 +259,7 @@ const (
 	OSWindows
 	OSMacOSX
 	OSiOS
-	OSiPadOS
+	OSiPadOS // kept for its value; this fork reports iPads as OSiOS, see doc/compat.md
 	OSAndroid
 	OSBlackberry
 	OSChromeOS
@@ -312,10 +312,13 @@ func (o OSName) String() string {
 		return "OSBot"
 	case OSTizen:
 		return "OSTizen"
+	// Roku and Apple TV keep the names the BrightMountainMediaInc fork gave
+	// them, "RokuOS" and "tvOS", which callers compare against and campaigns
+	// target by. See doc/compat.md.
 	case OSRoku:
-		return "OSRoku"
+		return "OSRokuOS"
 	case OSTvOS:
-		return "OSTvOS"
+		return "OStvOS"
 	default:
 		// anything out of range, including a value cast from a newer
 		// release, reads as unknown rather than a numeric placeholder
@@ -350,6 +353,7 @@ const (
 	PlatformNintendo
 	PlatformBot
 	PlatformAppleTV
+	PlatformRokuTV
 
 	// _platformFinal terminates the list so tests can enumerate it; keep it last.
 	_platformFinal
@@ -381,8 +385,11 @@ func (p Platform) String() string {
 		return "PlatformNintendo"
 	case PlatformBot:
 		return "PlatformBot"
+	// Named as the BrightMountainMediaInc fork named them. See doc/compat.md.
 	case PlatformAppleTV:
-		return "PlatformAppleTV"
+		return "PlatformtvOS"
+	case PlatformRokuTV:
+		return "PlatformRokuTV"
 	default:
 		// anything out of range, including a value cast from a newer
 		// release, reads as unknown rather than a numeric placeholder
