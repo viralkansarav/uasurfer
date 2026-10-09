@@ -49,6 +49,36 @@ func TestIsTVMarkers(t *testing.T) {
 	}
 }
 
+// TestIsAndroidTVBuild pins the build ID shape: the TV images match, while the
+// phone builds that share their layout, and anything cut short of it, do not.
+func TestIsAndroidTVBuild(t *testing.T) {
+	for _, ua := range []string{
+		"linux; u; android 9; k55dlg12us build/ptt1.190222.001",
+		"linux; u; android 14; smart tv pro build/utt2.250416.001",
+		"linux; android 12.0; build/sttl.240206.002",
+	} {
+		if !isAndroidTVBuild(ua) {
+			t.Errorf("isAndroidTVBuild(%q) = false, want true", ua)
+		}
+	}
+	for _, ua := range []string{
+		"",
+		"build/",
+		"build/ptt1.19022",      // cut short of the date
+		"build/ptt1x190222.001", // no dot after the branch
+		"build/ptt1.19o222.001", // a letter in the date
+		"build/1tt1.190222.001", // no release letter
+		"build/attila",
+		"linux; u; android 13; sm-a135f build/tp1a.220624.014",
+		"linux; u; android 12; 2201117tg build/skq1.211006.001",
+		"linux; u; android 14; pixel 8 build/uq1a.240205.004",
+	} {
+		if isAndroidTVBuild(ua) {
+			t.Errorf("isAndroidTVBuild(%q) = true, want false", ua)
+		}
+	}
+}
+
 // TestTVFixtures runs the connected TV fixture set. Device type and OS are
 // asserted together on purpose: a stick that reports the right OS and the wrong
 // device type is no more useful to a caller than one that reports neither.

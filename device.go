@@ -18,6 +18,13 @@ var tvMarkers = []string{
 	"tpm191e", "tpm171e", "nokia streaming box", "stableavb_telly", "lxbox51",
 	" x96", "canal plus box", "vectra 4k box",
 	"diw377", "diw380", "dv8555", "dctiw362", "gd1 4k", "ai pont", "b-stream",
+	// Android boxes, sticks and projectors whose model names no television: MEO's
+	// operator box, the boxes built on H313, Allwinner's TV box chip, Magcubic's
+	// HY300 projectors and the M98-Y10 stick. Each starts with the "; " Android
+	// puts before the model, which anchors it to that field as " x96" is anchored,
+	// and costs the scan far less: ";" turns up a few times in an agent, a space
+	// at every word.
+	"; meobox", "; h313", "; hy300", "; m98-y10",
 	// The media framework of Hisense VIDAA, LG and Samsung players, fetching on
 	// their behalf. Desktop Linux ships it too, but a desktop's ads fire from
 	// a browser, not from its media framework.
@@ -48,10 +55,37 @@ func isTV(ua string) bool {
 		return true
 	}
 
-	// Last, because it is the only check that has to look at where in the agent
-	// the match sits: every other marker here is distinctive enough to match
-	// anywhere.
-	return isFireTV(platformGroup(ua))
+	// Last, because they are the only checks that have to look at where in the
+	// agent the match sits: every other marker here is distinctive enough to
+	// match anywhere.
+	agentPlatform := platformGroup(ua)
+	return isAndroidTVBuild(agentPlatform) || isFireTV(agentPlatform)
+}
+
+// isAndroidTVBuild reports whether agentPlatform carries the build ID of an
+// Android TV image: "Build/PTT1.190222.001", "Build/STTL.240206.002". That is
+// the release letter (P is Android 9, U is 14), "TT", one more letter or digit,
+// a dot and the six digit date the build was cut. Phone and tablet builds put
+// something else after the release letter - "TP1A", "UQ1A", "SKQ1" - and none
+// of those in testdata/devices.tsv carries "TT".
+//
+// It is what recognises a television whose model is an opaque code no marker
+// could name, such as TD Systems' "K55DLG12US". The whole shape is required, so
+// a custom ROM's "Build/Attila" is not a TV. Only the platform group is
+// searched, because that is where Android states its build, once: scanning the
+// whole agent cost every Chrome on Android a pass that never finds one.
+func isAndroidTVBuild(agentPlatform string) bool {
+	_, id, _ := strings.Cut(agentPlatform, "build/")
+	if len(id) < 11 || !isLower(id[0]) || id[1] != 't' || id[2] != 't' ||
+		!isLower(id[3]) && !isDigit(id[3]) || id[4] != '.' {
+		return false
+	}
+	for i := 5; i < 11; i++ {
+		if !isDigit(id[i]) {
+			return false
+		}
+	}
+	return true
 }
 
 // isFireTV reports whether specs carries an Amazon Fire TV model token: "aft"

@@ -1,7 +1,7 @@
 # Connected TV
 
-Televisions, sticks and set top boxes report `DeviceTV`. Where the platform
-states an OS of its own, that is reported too.
+Televisions, sticks, set top boxes and Android projectors report `DeviceTV`.
+Where the platform states an OS of its own, that is reported too.
 
 | platform | OS name | platform value | OS version |
 |---|---|---|---|
@@ -18,6 +18,12 @@ The last row is not an omission: those platforms are Linux and state no version
 of their own, so a constant per brand would buy a name and nothing else. Use
 `DeviceTV` to know it is a television, and the browser and its version for what
 the device can actually render.
+
+Android TV images are recognised by their build ID as well as their model.
+Their builds carry "TT" after the release letter (`Build/PTT1.190222.001`,
+`Build/UTT2.250416.001`), which no phone or tablet build in the fixtures does,
+and that is what identifies a television whose model is an opaque code, such as
+TD Systems' `K55DLG12US`.
 
 Amazon's Fire TV models are recognised as a family, so a stick released after
 this version of the library still reports `DeviceTV`. Fire tablets remain

@@ -13,6 +13,10 @@
 #
 # The GStreamer rows were seen in Lumen's own ad traffic, fetched by the video
 # players of Hisense VIDAA, LG NetCast and Samsung TVs.
+#
+# The Dalvik rows at the end were seen in Bright Mountain Media's ad traffic:
+# an operator box, an H313 box, a projector, a stick and a TD Systems TV, none
+# of which names a television in its model.
 
 TV	TvOS	AppleCoreMedia/1.0.0.12F69 (Apple TV; U; CPU OS 8_3 like Mac OS X; en_us)
 TV	TvOS	AppleTV/1.1
@@ -1097,3 +1101,8 @@ TV	Unknown	GStreamer curlhttpsrc libcurl/8.4.0
 TV	Unknown	GStreamer souphttpsrc 1.20.6 libsoup/2.72.0
 TV	Unknown	GStreamer souphttpsrc 1.24.11 libsoup/2.72.0
 TV	Unknown	GStreamer souphttpsrc (compatible; LG NetCast.TV-2013) libsoup/2.74.3
+TV	Android	Dalvik/2.1.0 (Linux; U; Android 12; MEOBox 4K DV8985 Build/ST.12.3.8)
+TV	Android	Dalvik/2.1.0 (Linux; U; Android 14; H313PRO Build/UQ1A.231205.015)
+TV	Android	Dalvik/2.1.0 (Linux; U; Android 11; HY300Pro Build/RP1A.201005.006)
+TV	Android	Dalvik/2.1.0 (Linux; U; Android 13.0; M98-Y10 Build/SP1A.211105.004)
+TV	Android	Dalvik/2.1.0 (Linux; U; Android 9; K55DLG12US Build/PTT1.190222.001)
